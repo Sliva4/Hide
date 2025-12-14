@@ -25,7 +25,7 @@ using zygisk::ServerSpecializeArgs;
 
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "ZygiskHide", __VA_ARGS__)
 
-class MyModule : public zygisk::ModuleBase {
+class ZygiskHide : public zygisk::ModuleBase {
 public:
     void onLoad(Api *api, JNIEnv *env) override {
         this->api = api;
@@ -37,7 +37,7 @@ public:
         bool isRoot = (flags & zygisk::StateFlag::PROCESS_GRANTED_ROOT) != 0;
         bool isOnDenylist = (flags & zygisk::StateFlag::PROCESS_ON_DENYLIST) != 0;
         bool isChildZygote = args->is_child_zygote != NULL && *args->is_child_zygote;
-        if (isRoot || !isOnDenylist || !Utils::isUserAppUID(args->uid))
+        if (isRoot || !isOnDenylist || !isChildZygote)
         {
             LOGD("[ZygiskHide] Skipping ppid=%d uid=%d isChildZygote=%d", getppid(), args->uid, isChildZygote);
             return;
