@@ -1,10 +1,10 @@
 all: build zip-all
 build:
-	ndk-build
+	@ndk-build
 zip-all:
-	mv libs/arm64-v8a/libZygiskHide.so template/zygisk/arm64-v8a.so
-	mv libs/armeabi-v7a/libZygiskHide.so template/zygisk/armeabi-v7a.so
-	zip -r9 ZygiskHide.zip template/module.prop template/zygisk/arm64-v8a.so template/zygisk/armeabi-v7a.so
+	@mv module/libs/arm64-v8a/libZygiskHide.so module/template/zygisk/arm64-v8a.so
+	@mv module/libs/armeabi-v7a/libZygiskHide.so module/template/zygisk/armeabi-v7a.so
+	@zip -r9 module/ZygiskHide.zip module/template/module.prop module/template/zygisk/arm64-v8a.so template/zygisk/armeabi-v7a.so
 clean:
-	rm -rf libs
-	rm ZygiskHide.zip
+	@rm -rf module/libs
+	@rm module/ZygiskHide.zip
