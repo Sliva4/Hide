@@ -1,0 +1,6 @@
+id=zygisk_hide
+name=Zygisk Hide (TEST VERSION)
+version=v0.01
+versionCode=001
+author=Sliva4
+description=Zygisk module to hide traces.
