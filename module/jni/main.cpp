@@ -33,6 +33,7 @@ public:
     }
 
     void preAppSpecialize(AppSpecializeArgs *args) override {
+		api->setOption(zygisk::Option::DLCLOSE_MODULE_LIBRARY);
         uint32_t flags = api->getFlags();
         bool isRoot = (flags & zygisk::StateFlag::PROCESS_GRANTED_ROOT) != 0;
         bool isOnDenylist = (flags & zygisk::StateFlag::PROCESS_ON_DENYLIST) != 0;
@@ -60,11 +61,7 @@ private:
     void preSpecialize(const char *process) {
         // Demonstrate connecting to to companion process
         // We ask the companion for a random number
-        unsigned r = 0;
-        int fd = api->connectCompanion();
-        read(fd, &r, sizeof(r));
-        close(fd);
-        LOGD("process=[%s], r=[%u]\n", process, r);
+        LOGD("[ZygiskHide] process=[%s]\n",process);
 
         // Since we do not hook any functions, we should let Zygisk dlclose ourselves
         api->setOption(zygisk::Option::DLCLOSE_MODULE_LIBRARY);
@@ -72,16 +69,8 @@ private:
 
 };
 
-static int urandom = -1;
-
 static void companion_handler(int i) {
-    if (urandom < 0) {
-        urandom = open("/dev/urandom", O_RDONLY);
-    }
-    unsigned r;
-    read(urandom, &r, sizeof(r));
-    LOGD("companion r=[%u]\n", r);
-    write(i, &r, sizeof(r));
+    LOGD("[ZygiskHide] companion r=[100]\n");
 }
 
 // Register our module class and the companion handler function
