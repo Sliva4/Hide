@@ -12,6 +12,15 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Setup Rust Toolchain
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-linux-android
+          components: rust-src
+
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+
       - name: Setup NDK
         uses: nttld/setup-ndk@v1
         with:
