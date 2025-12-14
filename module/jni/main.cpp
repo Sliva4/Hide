@@ -38,9 +38,9 @@ public:
         bool isRoot = (flags & zygisk::StateFlag::PROCESS_GRANTED_ROOT) != 0;
         bool isOnDenylist = (flags & zygisk::StateFlag::PROCESS_ON_DENYLIST) != 0;
         bool isChildZygote = args->is_child_zygote != NULL && *args->is_child_zygote;
-        if (isRoot || !isOnDenylist || !isChildZygote)
+        if (isRoot || !isOnDenylist)
         {
-            LOGD("[ZygiskHide] Skipping ppid=%d uid=%d isChildZygote=%d", getppid(), args->uid, isChildZygote);
+            LOGD("[ZygiskHide] Skipping ppid=%d uid=%d isChildZygote=%d, isRoot=%d, isOnDenylist=%d", getppid(), args->uid, isChildZygote, isRoot, isOnDenylist);
             return;
         }
         LOGD("[ZygiskHide] [%d] Processing", getppid());
