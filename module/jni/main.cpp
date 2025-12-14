@@ -33,6 +33,16 @@ public:
     }
 
     void preAppSpecialize(AppSpecializeArgs *args) override {
+        uint32_t flags = api->getFlags();
+        bool isRoot = (flags & zygisk::StateFlag::PROCESS_GRANTED_ROOT) != 0;
+        bool isOnDenylist = (flags & zygisk::StateFlag::PROCESS_ON_DENYLIST) != 0;
+        bool isChildZygote = args->is_child_zygote != NULL && *args->is_child_zygote;
+        if (isRoot || !isOnDenylist || !Utils::isUserAppUID(args->uid))
+        {
+            LOGD("[ZygiskHide] Skipping ppid=%d uid=%d isChildZygote=%d", getppid(), args->uid, isChildZygote);
+            return;
+        }
+        LOGD("[ZygiskHide] [%d] Processing", getppid());
         // Use JNI to fetch our process name
         const char *process = env->GetStringUTFChars(args->nice_name, nullptr);
         preSpecialize(process);
@@ -75,5 +85,5 @@ static void companion_handler(int i) {
 }
 
 // Register our module class and the companion handler function
-REGISTER_ZYGISK_MODULE(MyModule)
+REGISTER_ZYGISK_MODULE(ZygiskHide)
 REGISTER_ZYGISK_COMPANION(companion_handler)
