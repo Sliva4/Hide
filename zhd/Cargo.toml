@@ -8,4 +8,7 @@ codegen-units = 1
 opt-level = 'z'
 strip = true
 panic = "abort"
+[target.aarch64-linux-android]
+ar = "llvm-ar"
+linker = "aarch64-linux-android29-clang"
 [dependencies]
