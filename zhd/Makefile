@@ -5,7 +5,6 @@ build:
 run: build
 	@./zhd
 clean:
-	@rm zhd
+	@rm -f zhd
 full-clean: clean
 	@cargo clean
-actions: build

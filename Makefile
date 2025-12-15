@@ -1,8 +1,8 @@
-all: build-zygisk toolchain build-zhd zip-all
+all: build-zygisk build-zhd zip-all
 build-zygisk:
 	@cd module && ndk-build && cd ..
 build-zhd:
-	@cd zhd && make actions && cd ..
+	@cd zhd && make build && cd ..
 zip-all:
 	@mv module/libs/arm64-v8a/libZygiskHide.so module/template/zygisk/arm64-v8a.so
 	@mv module/libs/armeabi-v7a/libZygiskHide.so module/template/zygisk/armeabi-v7a.so
@@ -11,6 +11,5 @@ clean:
 	@rm -rf module/libs
 	@rm -rf module/template/zygisk/arm64-v8a.so
 	@rm -rf module/template/zygisk/armeabi-v7a.so
-	@rm module/ZygiskHide.zip
-toolchain:
-	@sudo cp -r aarch64-linux-android-4.9-toolchain/bin/* /usr/bin
+	@rm -f module/ZygiskHide.zip
+	@cd zhd && make full-clean && cd ..
