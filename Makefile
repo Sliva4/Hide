@@ -2,7 +2,7 @@ all: build-zygisk build-zhd zip-all
 build-zygisk:
 	@cd module && ndk-build && cd ..
 build-zhd:
-	@cd zhd && make build && cd ..
+	@cd zhd && make actions && cd ..
 zip-all:
 	@mv module/libs/arm64-v8a/libZygiskHide.so module/template/zygisk/arm64-v8a.so
 	@mv module/libs/armeabi-v7a/libZygiskHide.so module/template/zygisk/armeabi-v7a.so
