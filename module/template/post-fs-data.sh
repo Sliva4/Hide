@@ -1,3 +1,4 @@
 cat old.prop > module.prop
+rm -f zygisk_check
 chmod +x monitor
-./monitor status "post-fs-data"
+./monitor status "Waiting for zygisk module..."

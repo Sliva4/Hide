@@ -1,12 +1,11 @@
 use std::env;
 mod utils;
-const MONITOR_VERSION_CODE: i32 = 2;
-const MODULE_VERSION: &str = "0.02";
+mod vars;
 enum Argument {
     Status
 }
 fn info() -> String {
-    let value: String = "Monitor: ".to_owned()+&MONITOR_VERSION_CODE.to_string();
+    let value: String = "[KERNEL]\nVersion: ".to_owned()+&utils::get_kernel_version()+"[VERSION]\nMonitor: "+vars::MONITOR_VERSION+"\nModule: "+vars::MODULE_VERSION;
     return value;
 }
 fn main() {

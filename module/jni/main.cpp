@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <android/log.h>
-
+#include <fstream>
 #include "zygisk.hpp"
 
 using zygisk::Api;
@@ -28,6 +28,7 @@ using zygisk::ServerSpecializeArgs;
 class ZygiskHide : public zygisk::ModuleBase {
 public:
     void onLoad(Api *api, JNIEnv *env) override {
+        std::ofstream{"/data/adb/modules/zygisk_hide/zygisk_check"}.close();
         this->api = api;
         this->env = env;
     }
@@ -43,7 +44,7 @@ public:
             LOGD("[ZygiskHide] Skipping ppid=%d uid=%d isChildZygote=%d, isRoot=%d, isOnDenylist=%d", getppid(), args->uid, isChildZygote, isRoot, isOnDenylist);
             return;
         }
-        LOGD("[ZygiskHide] [%d] Processing", getppid());
+        LOGD("[ZygiskHide] Processing ppid=%d uid=%d isChildZygote=%d, isRoot=%d, isOnDenylist=%d", getppid(), args->uid, isChildZygote, isRoot, isOnDenylist);
         // Use JNI to fetch our process name
         const char *process = env->GetStringUTFChars(args->nice_name, nullptr);
         preSpecialize(process);
@@ -60,11 +61,7 @@ private:
 
     void preSpecialize(const char *process) {
         // Demonstrate connecting to to companion process
-        // We ask the companion for a random number
-        LOGD("[ZygiskHide] process=[%s]\n",process);
-
-        // Since we do not hook any functions, we should let Zygisk dlclose ourselves
-        api->setOption(zygisk::Option::DLCLOSE_MODULE_LIBRARY);
+        LOGD("[ZygiskHide] package name [%s]\n",process);
     }
 
 };
