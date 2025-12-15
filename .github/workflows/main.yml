@@ -25,8 +25,9 @@ jobs:
 
       - name: Add NDK Toolchain to path
         run: |
-          echo "${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin/" >> $GITHUB_PATH
-
+          echo "$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/" >> $GITHUB_PATH
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
       - name: Build Module
         run: |
           make
