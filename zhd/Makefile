@@ -9,5 +9,5 @@ clean:
 full-clean: clean
 	@cargo clean
 compiler:
-	export PATH="$PATH:../aarch64-linux-android-4.9-toolchain/bin"
+	export PATH="../aarch64-linux-android-4.9-toolchain/bin:$PATH"
 actions: compiler build
