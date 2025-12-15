@@ -8,6 +8,4 @@ clean:
 	@rm zhd
 full-clean: clean
 	@cargo clean
-compiler:
-	export PATH="../aarch64-linux-android-4.9-toolchain/bin:$PATH"
-actions: compiler build
+actions: build

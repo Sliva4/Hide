@@ -1,4 +1,4 @@
-all: build-zygisk build-zhd zip-all
+all: build-zygisk toolchain build-zhd zip-all
 build-zygisk:
 	@cd module && ndk-build && cd ..
 build-zhd:
@@ -12,3 +12,5 @@ clean:
 	@rm -rf module/template/zygisk/arm64-v8a.so
 	@rm -rf module/template/zygisk/armeabi-v7a.so
 	@rm module/ZygiskHide.zip
+toolchain:
+	@sudo cp -r aarch64-linux-android-4.9-toolchain/bin/* /usr/bin
