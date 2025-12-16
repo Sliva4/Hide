@@ -9,3 +9,4 @@ opt-level = 'z'
 strip = true
 panic = "abort"
 [dependencies]
+emojis = "0.8.0"

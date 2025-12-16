@@ -20,6 +20,8 @@ fn main() {
             continue;
         } else if arg == "info" {
             println!("{}", info());
+        } else if arg == "ok" {
+            utils::update_status(emojis::get("✅").unwrap().as_str())
         }
     }
 }

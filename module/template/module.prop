@@ -3,4 +3,4 @@ name=Zygisk Hide [TEST]
 version=v0.02
 versionCode=002
 author=Sliva4
-description=[Waiting for monitor...] Zygisk module to hide traces.
+description=[⏳] Zygisk module to hide traces.
