@@ -9,5 +9,7 @@ clean:
 	@rm -f zh
 full-clean: clean
 	@cargo clean --quiet
+build-debug:
+	@cargo build --release && cp target/release/zh .
 debug:
 	@cargo run --release

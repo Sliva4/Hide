@@ -5,7 +5,7 @@ enum Argument {
     Status
 }
 fn info() -> String {
-    let value: String = "[KERNEL]\nVersion: ".to_owned()+&utils::get_kernel_version()+"[VERSION]\nzh: "+vars::zh_VERSION+"\nModule: "+vars::MODULE_VERSION;
+    let value: String = "[KERNEL]\nVersion: ".to_owned()+&utils::get_kernel_version()+"[VERSION]\nzh: "+vars::ZH_VERSION+"\nModule: "+vars::MODULE_VERSION;
     return value;
 }
 fn main() {
