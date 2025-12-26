@@ -14,3 +14,7 @@ release-build:
 	@cargo build --release && cp target/release/zh .
 release-run:
 	@cargo run --release
+debug-build:
+	@cargo build --debug && cp target/debug/zh .
+debug-run:
+	@cargo run --debug
