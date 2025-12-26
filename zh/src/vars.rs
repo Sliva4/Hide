@@ -1,2 +1,3 @@
-pub const ZH_VERSION: &str = "0.05";
+pub const ZH_VERSION: &str = "0.06";
 pub const MODULE_VERSION: &str = "0.02";
+pub const ZH_CONFIG_PATH: &str = "config.toml";

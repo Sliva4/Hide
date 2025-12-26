@@ -1,13 +1,14 @@
 use std::fs;
 use std::process::Command;
+use crate::config::get_config;
 pub fn update_status(status: &str) {
     let path = "module.prop";
-    let content = r#"id=zygisk_hide
+    let content = format!(r#"id=zygisk_hide
 name=Zygisk Hide [TEST]
 version=v0.02
 versionCode=002
 author=Sliva4
-description=[STATUS] Zygisk module to hide traces."#;
+description=[STATUS | Mode: {}] Zygisk module to hide traces."#,get_config("mode"));
     let _ = fs::write(path, content.replace("STATUS",status));
 }
 pub fn get_kernel_version() -> String {

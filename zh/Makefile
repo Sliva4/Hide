@@ -7,6 +7,7 @@ run: build
 clean:
 	@rm -f module.prop
 	@rm -f zh
+	@rm -f config.toml
 full-clean: clean
 	@cargo clean --quiet
 build-debug:
