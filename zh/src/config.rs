@@ -18,6 +18,13 @@ pub fn create_config() {
         let _ = file.expect("should write to file").write_all(r#"mode = '1'"#.as_bytes());
     }
 }
+pub fn get_config_txt() -> String {
+    if !config_exists() {
+        return format!("{} not found.",ZH_CONFIG_PATH);
+    }
+    let contents = fs::read_to_string(ZH_CONFIG_PATH).expect("open config");
+    return contents;
+}
 pub fn get_config(option: &str) -> String {
     if !config_exists() {
         create_config();

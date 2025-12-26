@@ -1,2 +1,2 @@
 chmod +x zh
-./zh ok
+./zh boot-completed

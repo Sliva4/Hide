@@ -9,7 +9,7 @@ enum Argument {
     ConfigGet
 }
 fn info() -> String {
-    let value: String = "[KERNEL]\nVersion: ".to_owned()+&utils::get_kernel_version()+"[VERSION]\nzh: "+vars::ZH_VERSION+"\nModule: "+vars::MODULE_VERSION;
+    let value: String = "[KERNEL]\nVersion: ".to_owned()+&utils::get_kernel_version()+"[VERSION]\nzh: "+vars::ZH_VERSION+"\nModule: "+vars::MODULE_VERSION+"\n[CONFIG]\n"+&config::get_config_txt();
     return value;
 }
 fn main() {
@@ -44,7 +44,7 @@ fn main() {
             continue;
         } else if arg == "info" {
             println!("{}", info());
-        } else if arg == "ok" {
+        } else if arg == "boot-completed" {
             utils::update_status(emojis::get("✅").unwrap().as_str())
         } else if arg == "config" {
             arg_type = Argument::Config;
