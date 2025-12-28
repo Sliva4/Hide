@@ -42,6 +42,6 @@ pub fn get_config_cli(option: &str) {
     if result == "" {
         println!("Unknown option.");
     } else {
-        println!("{}: {}",option,result);
+        println!("{}",result);
     }
 }
