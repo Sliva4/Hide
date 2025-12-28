@@ -38,14 +38,10 @@ pub fn get_config(option: &str) -> String {
     }
 }
 pub fn get_config_cli(option: &str) {
-    if !config_exists() {
-        create_config();
-    }
-    let contents = fs::read_to_string(ZH_CONFIG_PATH).expect("open config");
-    let config: Config = toml::from_str(&contents).unwrap();
-    if option == "mode" {
-        println!("mode: {}",config.mode);
+    let result = get_config(option);
+    if result == "" {
+        println!("Unknown option.");
     } else {
-        println!("Unknown option.")
+        println!("{}: {}",option,result);
     }
 }
