@@ -5,8 +5,8 @@ pub fn update_status(status: &str) {
     let path = "module.prop";
     let content = format!(r#"id=zygisk_hide
 name=Zygisk Hide [TEST]
-version=v0.02
-versionCode=002
+version=v0.03
+versionCode=003
 author=Sliva4
 description=[STATUS | Mode: {}] Zygisk module to hide traces."#,get_config("mode"));
     let _ = fs::write(path, content.replace("STATUS",status));
