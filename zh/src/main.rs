@@ -9,7 +9,8 @@ enum Argument {
     ConfigGet
 }
 fn info() -> String {
-    let value: String = "[KERNEL]\nVersion: ".to_owned()+&utils::get_kernel_version()+"[VERSION]\nzh: "+vars::ZH_VERSION+"\nModule: "+vars::MODULE_VERSION+"\n[CONFIG]\n"+&config::get_config_txt();
+    let sha256ok = format!("Successful installation: {}",utils::sha256ok_exists());
+    let value: String = format!("[KERNEL]\nVersion: {}[VERSION]\nzh: {}\nModule: {}\n[CONFIG]\n{}\n[OTHER]\n{}",&utils::get_kernel_version(),vars::ZH_VERSION,vars::MODULE_VERSION,&config::get_config_txt(),sha256ok);
     return value;
 }
 fn main() {
