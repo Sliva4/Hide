@@ -11,7 +11,7 @@
 // These includes are from the system_properties submodule, not NDK!
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <api/system_properties.h>
-#include <api/_system_properties.h>
+//#include <api/_system_properties.h>
 #include <system_properties/prop_info.h>
 
 #include "zygisk.hpp"
