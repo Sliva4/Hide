@@ -30,9 +30,6 @@ fn main() {
                 if arg == "get" {
                     arg_type = Argument::ConfigGet;
                     continue;
-                } else if arg == "create" {
-                    config::create_config();
-                    break;
                 } else {
                     println!("Unknown command.");
                     break;
