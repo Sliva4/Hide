@@ -24,7 +24,7 @@ fn main() {
             Argument::None => (),
             Argument::Status => {
                 utils::update_status(arg);
-                continue;
+                break;
             },
             Argument::Config => {
                 if arg == "get" {
@@ -32,15 +32,15 @@ fn main() {
                     continue;
                 } else if arg == "create" {
                     config::create_config();
-                    continue;
+                    break;
                 } else {
                     println!("Unknown command.");
-                    continue;
+                    break;
                 }
             },
             Argument::ConfigGet => {
                 config::get_config_cli(arg);
-                continue;
+                break;
             }
         }
         if arg == "status" {
@@ -48,13 +48,16 @@ fn main() {
             continue;
         } else if arg == "info" {
             println!("{}", info());
+            break;
         } else if arg == "boot-completed" {
-            utils::update_status(emojis::get("✅").unwrap().as_str())
+            utils::update_status(emojis::get("✅").unwrap().as_str());
+            break;
         } else if arg == "config" {
             arg_type = Argument::Config;
             continue;
         } else {
-            println!("Unknown command.")
+            println!("Unknown command.");
+            break;
         }
     }
 }
