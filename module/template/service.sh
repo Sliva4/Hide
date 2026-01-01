@@ -6,3 +6,5 @@ if VBMETA; then
     resetprop_if_diff "ro.boot.vbmeta.hash_alg" "sha256"
     resetprop_if_diff "ro.boot.vbmeta.size" "4096"
 fi
+
+./zh boot-completed

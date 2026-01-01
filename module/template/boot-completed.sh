@@ -1,1 +1,0 @@
-./zh boot-completed
