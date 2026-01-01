@@ -2,3 +2,5 @@ zh
 target/
 module.prop
 config.toml
+vbmeta
+rom
