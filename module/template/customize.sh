@@ -1,3 +1,7 @@
+if [[ ${ARCH} != "arm64" ]]; then
+	abort 'Only arm64 is supported!'
+fi
+
 echo "Path: $MODPATH"
 cd $MODPATH
 sha256sum --status -c sha256
