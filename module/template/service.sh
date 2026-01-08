@@ -7,4 +7,9 @@ if $VBMETA; then
     resetprop_if_diff "ro.boot.vbmeta.size" "4096"
 fi
 
+if $SUSFS; then
+    sus_mount "/system/usr/keylayout"
+    sus_mount "/system/xbin"
+fi
+
 $MODPATH/zh boot-completed
