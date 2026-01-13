@@ -12,12 +12,6 @@ jobs:
         with:
           submodules: "recursive"
 
-      - name: Setup Rust Toolchain
-        uses: dtolnay/rust-toolchain@nightly
-        with:
-          targets: aarch64-linux-android
-          components: rust-src
-
       - name: Setup NDK
         id: setup-ndk
         uses: nttld/setup-ndk@v1
@@ -29,6 +23,7 @@ jobs:
           echo "$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/" >> $GITHUB_PATH
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+          
       - name: Build Module
         run: |
           make
