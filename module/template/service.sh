@@ -12,4 +12,6 @@ if $SUSFS; then
     sus_mount "/system/xbin"
 fi
 
+delprop_if_exist "ro.build.selinux"
+
 $MODPATH/zh boot-completed
