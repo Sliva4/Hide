@@ -1,7 +1,5 @@
 use std::fs;
 use std::process::Command;
-use std::path::Path;
-use crate::vars::ZH_SHA256_PATH;
 use crate::config::get_config;
 pub fn update_status(status: &str) {
     let path = "module.prop";
@@ -19,8 +17,4 @@ pub fn get_kernel_version() -> String {
                      .output()
                      .expect("Should be able to execute `uname`");
     return String::from_utf8_lossy(&output.stdout).to_string();
-}
-
-pub fn sha256ok_exists() -> bool {
-    return Path::new(ZH_SHA256_PATH).exists();
 }
