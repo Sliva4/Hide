@@ -1,13 +1,9 @@
-FILES := zh config.toml action.sh common_func.sh service.sh customize.sh post-fs-data.sh old.prop module.prop zygisk/arm64-v8a.so
+FILES := common_func.sh service.sh customize.sh post-fs-data.sh old.prop module.prop zygisk/arm64-v8a.so
 ZIP_NAME := ZygiskHide.zip
 all: build-module
-build-module: configure-template build-zh copy-zh build-zygisk copy-zygisk-files hash zip-all
+build-module: configure-template build-zygisk copy-zygisk-files hash zip-all
 build-zygisk:
 	@cd module && ndk-build && cd ..
-build-zh:
-	@cd zh && make build && cd ..
-copy-zh:
-	@cp zh/zh module/template
 copy-zygisk-files: 
 	@mv module/libs/arm64-v8a/libZygiskHide.so module/template/zygisk/arm64-v8a.so
 hash:

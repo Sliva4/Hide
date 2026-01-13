@@ -14,4 +14,4 @@ else
     ui_print "- Some checksums failed or an error occurred."
     exit 1
 fi
-ui_print "- Welcome to ZygiskHide!"
+ui_print "- Welcome to Hide++!"
