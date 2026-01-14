@@ -1,0 +1,1 @@
+char* str_replace(char*, char*, char*);
