@@ -22,6 +22,4 @@ clean:
 	@rm -rf module/libs
 	@rm -rf module/template/zygisk/arm64-v8a.so
 	@rm -f module/$(ZIP_NAME)
-	@rm -f module/template/zh
 	@cat /dev/null > module/template/sha256
-	@cd zh && make full-clean && cd ..

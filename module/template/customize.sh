@@ -7,7 +7,6 @@ echo "- Path: $MODPATH"
 cd $MODPATH
 sha256sum --status -c sha256
 rm -f sha256
-chmod +x zh
 if [ $? -eq 0 ]; then
     ui_print "- All checksums matched successfully."
 else
